@@ -2,6 +2,8 @@ package com.example.kpd.algoritimo;
 
 import java.util.Arrays;
 
+import com.example.kpd.model.Aresta;
+
 public class Kruskal {
     public int V, E;
     public Aresta[] arestas;

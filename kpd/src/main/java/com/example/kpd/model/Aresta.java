@@ -1,4 +1,4 @@
-package com.example.kpd.algoritimo;
+package com.example.kpd.model;
 
 public class Aresta implements Comparable<Aresta> {
     public int origem, destino, peso;
