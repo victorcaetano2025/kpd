@@ -1,4 +1,4 @@
-package com.example.kpd.algoritimo;
+package com.example.kpd.algoritmo;
 
 import java.util.Arrays;
 
