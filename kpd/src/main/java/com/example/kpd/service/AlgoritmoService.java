@@ -1,4 +1,4 @@
-package com.example.kpd.Service;
+package com.example.kpd.service;
 
 import com.example.kpd.algorithms.Dijkstra;
 import com.example.kpd.algorithms.Prim;
