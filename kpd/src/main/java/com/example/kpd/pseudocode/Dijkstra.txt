@@ -1,0 +1,22 @@
+FUNÇÃO DIJKSTRA(Grafo G, Origem s):
+  // Inicialização
+  PARA cada vértice v em G:
+    dist[v] <- INFINITO
+  FIM PARA
+  dist[s] <- 0
+  FilaPrioridade Q <- nova Fila de Prioridade (contendo todos os vértices)
+
+  // Algoritmo principal: Processa vértices com a menor distância
+  ENQUANTO Q não está vazia:
+    u <- EXTRAIR_MIN(Q)
+    PARA cada vizinho v de u:
+      // Relaxamento
+      SE dist[u] + peso(u, v) < dist[v]:
+        dist[v] <- dist[u] + peso(u, v)
+        ATUALIZAR_CHAVE(Q, v, dist[v])
+      FIM SE
+    FIM PARA
+  FIM ENQUANTO
+
+  // Retorna a soma total dos caminhos mínimos
+  RETORNAR SOMA(dist)

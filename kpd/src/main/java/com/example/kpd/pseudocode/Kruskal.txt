@@ -1,0 +1,27 @@
+FUNÇÃO KRUSKAL(Grafo G):
+  // Inicialização
+  Arestas A <- todas as arestas de G
+  ORDENAR(A) por peso crescente
+  DS <- nova estrutura de Conjuntos Disjuntos (Union-Find)
+
+  PARA cada vértice v em G:
+    FAZER_CONJUNTO(DS, v)
+  FIM PARA
+
+  custoTotal <- 0.0
+  arestasIncluidas <- 0
+
+  // Algoritmo principal: Seleciona arestas que não formam ciclo
+  PARA cada aresta e=(u, v) em A:
+    // Verifica se u e v estão em conjuntos disjuntos (sem ciclo)
+    SE ENCONTRAR(DS, u) != ENCONTRAR(DS, v):
+      custoTotal <- custoTotal + peso(e)
+      UNIR(DS, u, v)
+      arestasIncluidas <- arestasIncluidas + 1
+      SE arestasIncluidas = NÚMERO_DE_VÉRTICES(G) - 1:
+        QUEBRAR
+      FIM SE
+    FIM SE
+  FIM PARA
+
+  RETORNAR custoTotal

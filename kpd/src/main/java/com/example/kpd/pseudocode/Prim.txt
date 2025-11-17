@@ -1,0 +1,30 @@
+FUNÇÃO PRIM(Grafo G):
+  // Inicialização
+  PARA cada vértice v em G:
+    chave[v] <- INFINITO  // Armazena o peso da aresta de menor custo para o conjunto atual
+    visitado[v] <- FALSO
+  FIM PARA
+  chave[s] <- 0 (onde s é o vértice inicial, e.g., 0)
+
+  FilaPrioridade Q <- nova Fila de Prioridade (todos os vértices, chave[v] como prioridade)
+  custoTotal <- 0.0
+
+  // Algoritmo principal: Constrói a AGM adicionando vértices
+  ENQUANTO Q não está vazia:
+    u <- EXTRAIR_MIN(Q)
+    SE visitado[u] é VERDADEIRO:
+      CONTINUAR
+    FIM SE
+    visitado[u] <- VERDADEIRO
+    custoTotal <- custoTotal + chave[u]
+
+    PARA cada aresta (u, v) adjacente a u:
+      // Atualiza a chave de v se esta aresta for mais barata
+      SE visitado[v] é FALSO E peso(u, v) < chave[v]:
+        chave[v] <- peso(u, v)
+        ATUALIZAR_CHAVE(Q, v, chave[v])
+      FIM SE
+    FIM PARA
+  FIM ENQUANTO
+
+  RETORNAR custoTotal
