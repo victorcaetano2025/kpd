@@ -13,10 +13,12 @@ public class ResultadoExecucao {
     private double custoKruskal;
     private double tempoKruskal;
 
+    private String nomeInstancia;
+
     public ResultadoExecucao(int n, int m,
-                             double custoDijkstra, double tempoDijkstra,
-                             double custoPrim, double tempoPrim,
-                             double custoKruskal, double tempoKruskal) {
+            double custoDijkstra, double tempoDijkstra,
+            double custoPrim, double tempoPrim,
+            double custoKruskal, double tempoKruskal) {
         this.n = n;
         this.m = m;
         this.custoDijkstra = custoDijkstra;
@@ -27,15 +29,43 @@ public class ResultadoExecucao {
         this.tempoKruskal = tempoKruskal;
     }
 
-    public int getN() { return n; }
-    public int getM() { return m; }
+    public int getN() {
+        return n;
+    }
 
-    public double getCustoDijkstra() { return custoDijkstra; }
-    public double getTempoDijkstra() { return tempoDijkstra; }
+    public int getM() {
+        return m;
+    }
 
-    public double getCustoPrim() { return custoPrim; }
-    public double getTempoPrim() { return tempoPrim; }
+    public double getCustoDijkstra() {
+        return custoDijkstra;
+    }
 
-    public double getCustoKruskal() { return custoKruskal; }
-    public double getTempoKruskal() { return tempoKruskal; }
+    public double getTempoDijkstra() {
+        return tempoDijkstra;
+    }
+
+    public double getCustoPrim() {
+        return custoPrim;
+    }
+
+    public double getTempoPrim() {
+        return tempoPrim;
+    }
+
+    public double getCustoKruskal() {
+        return custoKruskal;
+    }
+
+    public double getTempoKruskal() {
+        return tempoKruskal;
+    }
+
+    public String getNomeInstancia() {
+        return nomeInstancia;
+    }
+
+    public void setNomeInstancia(String nomeInstancia) {
+        this.nomeInstancia = nomeInstancia;
+    }
 }
