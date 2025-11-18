@@ -70,46 +70,6 @@ public class RelatorioPDFService {
             document.add(titulo);
             document.add(new Paragraph("\n"));
 
-            // --- INÍCIO: EXTRAÇÃO E INSERÇÃO DO TEXTO DE 'analise_teorica.pdf' ---
-
-            PdfReader reader = null;
-            try {
-                // Carregar o arquivo PDF do classpath (src/main/resources/analise_teorica.pdf)
-                Resource resource = resourceLoader.getResource("classpath:analise_teorica.pdf");
-                InputStream pdfStream = resource.getInputStream();
-
-                reader = new PdfReader(pdfStream);
-
-                StringBuilder textoExtraido = new StringBuilder();
-
-                // Loop por todas as páginas do PDF para extrair o texto
-                for (int i = 1; i <= reader.getNumberOfPages(); i++) {
-                    String textoDaPagina = PdfTextExtractor.getTextFromPage(reader, i,
-                            new SimpleTextExtractionStrategy());
-                    textoExtraido.append(textoDaPagina);
-                    textoExtraido.append("\n\n");
-                }
-
-                // Adicionar o texto extraído ao documento principal
-                Font textoFonte = new Font(Font.FontFamily.HELVETICA, 10);
-                Paragraph paragrafoAnalise = new Paragraph(textoExtraido.toString(), textoFonte);
-                paragrafoAnalise.setAlignment(Element.ALIGN_JUSTIFIED);
-                document.add(paragrafoAnalise);
-
-                // Espaço antes da tabela
-                document.add(new Paragraph("\n"));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                document.add(new Paragraph("Erro ao carregar analise_teorica.pdf para extração: " + e.getMessage()));
-            } finally {
-                if (reader != null) {
-                    reader.close();
-                }
-            }
-
-            // --- FIM DA EXTRAÇÃO DE TEXTO ---
-
             // --- INÍCIO: CRIAÇÃO DA TABELA (Dinâmica, exceto o Tempo) ---
 
             PdfPTable tabela = new PdfPTable(9);
@@ -159,6 +119,47 @@ public class RelatorioPDFService {
             }
 
             document.add(tabela);
+
+            // --- INÍCIO: EXTRAÇÃO E INSERÇÃO DO TEXTO DE 'analise_teorica.pdf' ---
+
+            PdfReader reader = null;
+            try {
+                // Carregar o arquivo PDF do classpath (src/main/resources/analise_teorica.pdf)
+                Resource resource = resourceLoader.getResource("classpath:analise_teorica.pdf");
+                InputStream pdfStream = resource.getInputStream();
+
+                reader = new PdfReader(pdfStream);
+
+                StringBuilder textoExtraido = new StringBuilder();
+
+                // Loop por todas as páginas do PDF para extrair o texto
+                for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+                    String textoDaPagina = PdfTextExtractor.getTextFromPage(reader, i,
+                            new SimpleTextExtractionStrategy());
+                    textoExtraido.append(textoDaPagina);
+                    textoExtraido.append("\n\n");
+                }
+
+                // Adicionar o texto extraído ao documento principal
+                Font textoFonte = new Font(Font.FontFamily.HELVETICA, 10);
+                Paragraph paragrafoAnalise = new Paragraph(textoExtraido.toString(), textoFonte);
+                paragrafoAnalise.setAlignment(Element.ALIGN_JUSTIFIED);
+                document.add(paragrafoAnalise);
+
+                // Espaço antes da tabela
+                document.add(new Paragraph("\n"));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                document.add(new Paragraph("Erro ao carregar analise_teorica.pdf para extração: " + e.getMessage()));
+            } finally {
+                if (reader != null) {
+                    reader.close();
+                }
+            }
+
+            // --- FIM DA EXTRAÇÃO DE TEXTO ---
+
             document.close();
 
         } catch (Exception e) {

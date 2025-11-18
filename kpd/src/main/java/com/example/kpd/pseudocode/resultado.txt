@@ -1,0 +1,27 @@
+- Acessado o Controller na rota /pdf/gerar
+Começa 3 grafos aleatorios são gerados e devolvolvem resultado(NY, BAY, COL)
+
+        // --- Instância 1: Nova York (NY) ---
+        Grafo grafoNY = GeradorGrafoAleatorio.gerarGrafo(264346, 733846, false);
+        ResultadoExecucao resultadoNY = algoritmoService.executar(grafoNY);
+        resultadoNY.setNomeInstancia("Nova York");
+        resultados.add(resultadoNY);
+
+        // --- Instância 2: San Francisco (BAY) ---
+        Grafo grafoBAY = GeradorGrafoAleatorio.gerarGrafo(321270, 800172, false);
+        ResultadoExecucao resultadoBAY = algoritmoService.executar(grafoBAY);
+        resultadoBAY.setNomeInstancia("San Francisco");
+        resultados.add(resultadoBAY);
+
+        // --- Instância 3: Colorado (COL) ---
+        Grafo grafoCOL = GeradorGrafoAleatorio.gerarGrafo(435666, 1057066, false);
+        ResultadoExecucao resultadoCOL = algoritmoService.executar(grafoCOL);
+        resultadoCOL.setNomeInstancia("Colorado");
+        resultados.add(resultadoCOL);
+
+- Ja executado os Algoritmos e Armazenandos os resultados 
+List<ResultadoExecucao> resultados = new ArrayList<>();
+
+- E gerado o PDF e mandado como resposta o arquivo gerado para quem acessou a rota /pdf/gerar
+relatorioPDFService.gerarPDF(resultados, response);
+    
